@@ -1,6 +1,7 @@
 package com.example.vacationproj3.Activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -15,6 +16,8 @@ import java.util.regex.Pattern
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
+    private lateinit var sf : SharedPreferences
+    private lateinit var editor : SharedPreferences.Editor
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -24,6 +27,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        sf =getSharedPreferences("Auth", MODE_PRIVATE)
+        editor = sf.edit()
         if(Firebase.auth.currentUser == null) startActivity(Intent(this,LoginActivity::class.java))
 
     }

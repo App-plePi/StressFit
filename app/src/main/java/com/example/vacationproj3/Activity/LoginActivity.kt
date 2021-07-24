@@ -15,7 +15,8 @@ import java.util.regex.Pattern
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
-    val sf: SharedPreferences = getSharedPreferences("Auth", MODE_PRIVATE)
+    private lateinit var sf : SharedPreferences
+    private lateinit var editor : SharedPreferences.Editor
     @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +25,19 @@ class LoginActivity : AppCompatActivity() {
 
         binding.inputSignButton.setOnClickListener {
             if(EmailCheck(binding.inputEmail.text.toString()) and PasswordCheck(binding.inputPw.text.toString())) {
-                sf.edit().putString("email",binding.inputEmail.text.toString())
-                sf.edit().putString("pw",binding.inputPw.text.toString())
+                editor.putString("email",binding.inputEmail.text.toString())
+                editor.commit()
+                editor.putString("pw",binding.inputPw.text.toString())
+                editor.commit()
                 login(binding.inputEmail.text.toString(), binding.inputPw.text.toString(),1)
             } else {
                 showAlertNoListener("로그인 오류","이메일 및 비밀번호 형식을 확인해주세요. 비밀번호는 특수문자, 숫자, 영어를 하나 이상 포함한 8자 이상 16자 이하입니다.")
+            }
+        }
+
+        binding.inputJoinButton.setOnClickListener {
+            if(Firebase.auth.currentUser == null) {
+                startActivity(Intent(this,SignUpActivity::class.java ))
             }
         }
 
@@ -36,7 +45,8 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
+        sf =getSharedPreferences("Auth", MODE_PRIVATE)
+        editor = sf.edit()
         if(!(sf.getString("email","").equals("")) and !(sf.getString("pw","").equals(""))) {
             login(sf.getString("email","").toString(), sf.getString("pw","").toString(),0)
         }
