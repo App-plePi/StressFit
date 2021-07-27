@@ -5,18 +5,23 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import com.example.vacationproj3.Data.MyData
 import com.example.vacationproj3.R
 import com.example.vacationproj3.databinding.ActivityLoginBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import java.util.regex.Pattern
+import kotlin.system.exitProcess
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLoginBinding
     private lateinit var sf : SharedPreferences
     private lateinit var editor : SharedPreferences.Editor
+    private var backKeyPressedTime : Long = 0
     @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.inputJoinButton.setOnClickListener {
-            if(Firebase.auth.currentUser == null) {
+            if(MyData.uid == "") {
                 startActivity(Intent(this,SignUpActivity::class.java ))
             }
         }
@@ -74,12 +79,39 @@ class LoginActivity : AppCompatActivity() {
     fun login(email: String, pw: String, mode: Int) {
         Firebase.auth.signInWithEmailAndPassword(email, pw).addOnCompleteListener { task ->
             if(task.isSuccessful) {
+                editor.putString("email",binding.inputEmail.text.toString())
+                editor.commit()
+                editor.putString("pw",binding.inputPw.text.toString())
+                editor.commit()
+
+                MyData.uid = Firebase.auth.currentUser?.uid.toString()
+                MyData.displayName = Firebase.auth.currentUser?.uid.toString()
+                MyData.photoUrl = Firebase.auth.currentUser?.photoUrl.toString()
                 startActivity(Intent(this, MainActivity::class.java))
             } else {
                 if(mode == 0) showAlertNoListener("자동로그인 오류",task.exception?.message.toString())
                 else showAlertNoListener("로그인 오류",task.exception?.message.toString())
             }
 
+        }
+    }
+
+
+    override fun onBackPressed() {
+        lateinit var toast: Toast
+        if(System.currentTimeMillis() > backKeyPressedTime + 2500) {
+            backKeyPressedTime = System.currentTimeMillis()
+            toast = Toast.makeText(this,"뒤로가기를 한번 더 누르면 종료됩니다.",Toast.LENGTH_LONG)
+            toast.show()
+            return;
+        }
+        if(System.currentTimeMillis() <= backKeyPressedTime + 2500) {
+            finishAffinity()
+            finish()
+            System.runFinalization()
+            moveTaskToBack(true)
+            finishAndRemoveTask()
+            exitProcess(0)
         }
     }
 

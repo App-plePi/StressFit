@@ -5,6 +5,4 @@ object MyData {
     var displayName : String = ""
     var photoUrl : String = ""
     var stressLevel : String = "없음"
-
-
 }
