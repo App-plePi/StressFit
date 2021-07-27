@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">vacationProj3</string>
+    <string name="default_profile_url">https://avatars.githubusercontent.com/u/56637184?v=4</string>
 </resources>
