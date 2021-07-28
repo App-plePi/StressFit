@@ -85,7 +85,7 @@ class LoginActivity : AppCompatActivity() {
                 editor.commit()
 
                 MyData.uid = Firebase.auth.currentUser?.uid.toString()
-                MyData.displayName = Firebase.auth.currentUser?.uid.toString()
+                MyData.displayName = Firebase.auth.currentUser?.displayName.toString()
                 MyData.photoUrl = Firebase.auth.currentUser?.photoUrl.toString()
                 startActivity(Intent(this, MainActivity::class.java))
             } else {
