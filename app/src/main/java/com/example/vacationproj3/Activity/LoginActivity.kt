@@ -10,10 +10,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.example.vacationproj3.Data.MyData
+import com.example.vacationproj3.Function.Firestore.getMyStressLevel
 import com.example.vacationproj3.R
 import com.example.vacationproj3.databinding.ActivityLoginBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.util.regex.Pattern
 import kotlin.system.exitProcess
 
@@ -87,6 +92,17 @@ class LoginActivity : AppCompatActivity() {
                 MyData.uid = Firebase.auth.currentUser?.uid.toString()
                 MyData.displayName = Firebase.auth.currentUser?.displayName.toString()
                 MyData.photoUrl = Firebase.auth.currentUser?.photoUrl.toString()
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    var data1 : String? = null
+                    runBlocking {
+                        data1 = getMyStressLevel()
+                        data1?.let{
+                            MyData.stressLevel = data1.toString()
+                        }
+                    }
+                }
+
                 startActivity(Intent(this, MainActivity::class.java))
             } else {
                 if(mode == 0) showAlertNoListener("자동로그인 오류",task.exception?.message.toString())

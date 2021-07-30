@@ -198,6 +198,7 @@ class SignUpActivity : AppCompatActivity() {
                         Firebase.firestore.collection("users").document(MyData.uid).set(hashMapOf(
                             "stressLevel" to "없음"
                         )).addOnSuccessListener {
+                            MyData.stressLevel = "없음"
                             goMainActivity()
                         }.addOnFailureListener {
                             showAlertDialog("회원가입 오류",it.message.toString())
