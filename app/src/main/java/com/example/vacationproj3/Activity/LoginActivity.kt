@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.example.vacationproj3.Data.MyData
-import com.example.vacationproj3.Function.Firestore.getMyStressLevel
+import com.example.vacationproj3.Function.Firestore
 import com.example.vacationproj3.R
 import com.example.vacationproj3.databinding.ActivityLoginBinding
 import com.google.firebase.auth.ktx.auth
@@ -96,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
                 CoroutineScope(Dispatchers.IO).launch {
                     var data1 : String? = null
                     runBlocking {
-                        data1 = getMyStressLevel()
+                        data1 = Firestore.getMyStressLevel()
                         data1?.let{
                             MyData.stressLevel = data1.toString()
                         }
