@@ -2,10 +2,13 @@ package com.example.vacationproj3.Function
 
 import android.annotation.SuppressLint
 import com.example.vacationproj3.Data.MyData
+import com.google.common.collect.ArrayListMultimap
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
+import java.io.Serializable
 
 object Firestore{
     @SuppressLint("StaticFieldLeak")
@@ -71,6 +74,23 @@ object Firestore{
         } catch(e: Exception) {
             errorMessage = e.message
             returnD = false
+        }
+    }
+
+    //suspend fun uploadPost()
+    suspend fun getStressQuestions(): QuerySnapshot? {
+        var data : QuerySnapshot? = null
+        try {
+            db.collection("stress").get().addOnSuccessListener {
+                data = it
+            }.addOnFailureListener {
+                errorMessage = it.message
+
+            }.await()
+            return data
+        } catch(e: Exception) {
+            errorMessage= e.message
+            return data
         }
     }
 

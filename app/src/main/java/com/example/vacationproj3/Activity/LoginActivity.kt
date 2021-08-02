@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         sf =getSharedPreferences("Auth", MODE_PRIVATE)
         editor = sf.edit()
-        if(!(sf.getString("email","").equals("")) and !(sf.getString("pw","").equals(""))) {
+        if((!sf.getString("email","").equals("")) and !(sf.getString("pw","").equals(""))) {
             login(sf.getString("email","").toString(), sf.getString("pw","").toString(),0)
         }
     }
