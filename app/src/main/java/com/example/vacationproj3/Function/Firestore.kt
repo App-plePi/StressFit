@@ -1,6 +1,7 @@
 package com.example.vacationproj3.Function
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
 import com.example.vacationproj3.Data.MyData
 import com.google.common.collect.ArrayListMultimap
 import com.google.firebase.firestore.FieldValue
