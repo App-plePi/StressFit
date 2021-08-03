@@ -142,5 +142,43 @@ object Firestore{
             return data
         }
     }
+    suspend fun delPost(uid: String) : Boolean? { //성공시 true 실패시 false
+        if(!uid.equals(MyData.uid)) {
+            errorMessage = "No Permission"
+            return false
+        }
+        var returnD = false
+        return try {
+            db.collection("posts").document(uid).delete().addOnSuccessListener {
+                returnD = true
+            }.addOnFailureListener {
+                errorMessage = it.message
+                returnD = false
+            }.await()
+            returnD
+        } catch (e: Exception) {
+            errorMessage = e.message
+            null
+        }
+    }
+    suspend fun editPost(uid: String, text: String) : Boolean? {
+        if(!uid.equals(MyData.uid)) {
+            errorMessage = "No Permission"
+            return false
+        }
+        var returnD = false
+        return try {
+            db.collection("posts").document(uid).update("text", text).addOnSuccessListener {
+                returnD = true
+            }.addOnFailureListener {
+                errorMessage = it.message
+                returnD = false
+            }.await()
+            returnD
+        } catch(e: Exception) {
+            errorMessage = e.message
+            false
+        }
+    }
 
 }
