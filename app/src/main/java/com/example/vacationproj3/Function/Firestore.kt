@@ -3,6 +3,7 @@ package com.example.vacationproj3.Function
 import android.annotation.SuppressLint
 import com.example.vacationproj3.Data.MyData
 import com.google.common.collect.ArrayListMultimap
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
@@ -77,7 +78,6 @@ object Firestore{
         }
     }
 
-    //suspend fun uploadPost()
     suspend fun getStressQuestions(): QuerySnapshot? {
         var data : QuerySnapshot? = null
         try {
@@ -94,5 +94,53 @@ object Firestore{
         }
     }
 
+    //suspend fun upload
+    suspend fun heartButton(uid: String): Boolean? { //하트 추가시 true리턴, 하트 삭제시 false리턴, 실패시 null
+        var returnD : Boolean? = null
+        var isPressed : Boolean? = null
+
+        return try{
+            db.collection("posts").document(uid).get().addOnSuccessListener {
+                val heartList = it.data?.get("heart") as ArrayList<*>?
+                heartList?.let {
+                    isPressed = heartList.contains(MyData.uid)
+                }
+            }.await()
+            lateinit var temp : FieldValue
+            if(isPressed == true)  {
+                temp = FieldValue.arrayUnion(MyData.uid)
+                returnD = false
+            }
+            else {
+                temp = FieldValue.arrayRemove(MyData.uid)
+                returnD = true
+            }
+            db.collection("posts").document(uid).update("heart",temp).addOnSuccessListener {
+
+            }.addOnFailureListener {
+                errorMessage = it.message
+                returnD = null
+            }.await()
+            returnD
+        } catch(e: Exception) {
+            errorMessage= e.message
+            null
+        }
+    }
+    suspend fun getPosts(): QuerySnapshot? {
+        var data : QuerySnapshot? = null
+        try {
+            db.collection("posts").get().addOnSuccessListener {
+                data = it
+            }.addOnFailureListener {
+                errorMessage = it.message
+
+            }.await()
+            return data
+        } catch(e: Exception) {
+            errorMessage= e.message
+            return data
+        }
+    }
 
 }
