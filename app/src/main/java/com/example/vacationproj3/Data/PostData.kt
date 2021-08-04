@@ -6,8 +6,6 @@ data class PostData (
     var userPhotoUrl: String,
     var userStressLevel: String,
 
-    var uploadTime : String,
-
     var heart: ArrayList<String>,
     var postImageUUID: String?,
     var text: String,

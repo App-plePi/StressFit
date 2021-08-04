@@ -3,24 +3,14 @@ package com.example.vacationproj3.Function
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import com.example.vacationproj3.Data.MyData
-import com.example.vacationproj3.Data.PostData
-import com.google.android.gms.common.util.Base64Utils
 import com.google.common.collect.ArrayListMultimap
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.tasks.await
-import java.io.ByteArrayOutputStream
 import java.io.Serializable
-import java.security.DigestException
-import java.security.MessageDigest
-import java.security.Timestamp
-import java.time.LocalDate
-import java.util.*
-import kotlin.collections.ArrayList
 
 object Firestore{
     @SuppressLint("StaticFieldLeak")
@@ -139,32 +129,19 @@ object Firestore{
             null
         }
     }
-    suspend fun getPosts(): ArrayList<PostData>? {
-        var returnData : ArrayList<PostData>? = null
+    suspend fun getPosts(): QuerySnapshot? {
+        var data : QuerySnapshot? = null
         try {
             db.collection("posts").get().addOnSuccessListener {
-                for(d in it) {
-                    val tmp : PostData = PostData(
-                        d.data["username"].toString(),
-                        d.data["uid"].toString(),
-                        d.data["photoUrl"].toString(),
-                        d.data["stressLevel"].toString(),
-                        d.data["time"].toString(),
-                        d.data["heart"] as ArrayList<String>,
-                        d.data["photoUid"].toString(),
-                        d.data["text"].toString(),
-                        d.id
-                    )
-                    returnData?.add(tmp)
-                }
+                data = it
             }.addOnFailureListener {
                 errorMessage = it.message
 
             }.await()
-            return returnData
+            return data
         } catch(e: Exception) {
             errorMessage= e.message
-            return returnData
+            return data
         }
     }
     suspend fun delPost(uid: String) : Boolean? { //성공시 true 실패시 false
@@ -205,68 +182,5 @@ object Firestore{
             false
         }
     }
-
-    suspend fun uploadPost(bitmap: Bitmap, text: String): Boolean? {
-        var returnD : Boolean? = null
-        try {
-            val baos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100,baos)
-            val data = baos.toByteArray()
-            val storageRef = Firebase.storage.reference
-            val PHOTOUID = createPhotoUid()
-            val photoRef = storageRef.child("postImages/$PHOTOUID.png")
-            val uploadTask = photoRef.putBytes(data)
-            uploadTask.addOnFailureListener{
-                throw Exception(it.message)
-            }.await()
-            var t = arrayListOf<String>()
-            val uploadData = hashMapOf(
-                "username" to MyData.displayName,
-                "uid" to MyData.uid,
-                "photoUrl" to MyData.photoUrl,
-                "stressLevel" to MyData.stressLevel,
-                "time" to LocalDate.now(),
-                "heart" to t,
-                "photoUid" to PHOTOUID,
-                "text" to text
-            )
-            db.collection("posts").document().set(uploadData).addOnFailureListener {
-                throw Exception(it.message)
-            }.addOnSuccessListener {
-                returnD = true
-            }.await()
-        } catch(e: Exception) {
-            errorMessage = e.message
-            returnD = false
-        }
-        return returnD
-
-    }
-
-
-
-
-    fun createPhotoUid(): String {
-        return hashSHA256(getTimestamp() + MyData.uid)
-    }
-
-    fun getTimestamp(): String {
-        return System.currentTimeMillis().toString()
-    }
-
-    fun hashSHA256(msg: String): String {
-        val hash: ByteArray
-        try{
-            val md = MessageDigest.getInstance("SHA-256")
-            md.update(msg.toByteArray())
-            hash = md.digest()
-        }catch (e: CloneNotSupportedException){
-            throw DigestException("couldn't make digest of patial content")
-        }
-        return Base64Utils.encode(hash)
-    }
-
-
-
 
 }
