@@ -73,8 +73,8 @@ object Firestore{
         }
     }
 
-    suspend fun updateStressLevel(stressLvl: String) {
-        var returnD : Boolean = false
+    suspend fun updateStressLevel(stressLvl: String): Boolean? {
+        var returnD : Boolean? = false
         try {
             MyData.stressLevel = stressLvl
             db.collection("users").document(MyData.uid).set(hashMapOf("stressLevel" to stressLvl), SetOptions.merge()).addOnSuccessListener {
@@ -87,6 +87,7 @@ object Firestore{
             errorMessage = e.message
             returnD = false
         }
+        return returnD
     }
 
     suspend fun getStressQuestions(): QuerySnapshot? {
