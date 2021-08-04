@@ -37,9 +37,9 @@ class LoginActivity : AppCompatActivity() {
             if(EmailCheck(binding.inputEmail.text.toString()) and PasswordCheck(binding.inputPw.text.toString())) {
                 editor.putString("email",binding.inputEmail.text.toString())
                 editor.commit()
-                editor.putString("pw",binding.inputPw.text.toString())
+                editor.putString("pw",Firestore.hashSHA256(binding.inputPw.text.toString()))
                 editor.commit()
-                login(binding.inputEmail.text.toString(), binding.inputPw.text.toString(),1)
+                login(binding.inputEmail.text.toString(), Firestore.hashSHA256(binding.inputPw.text.toString()),1)
             } else {
                 showAlertNoListener("로그인 오류","이메일 및 비밀번호 형식을 확인해주세요. 비밀번호는 특수문자, 숫자, 영어를 하나 이상 포함한 8자 이상 16자 이하입니다.")
             }
@@ -84,10 +84,6 @@ class LoginActivity : AppCompatActivity() {
     fun login(email: String, pw: String, mode: Int) {
         Firebase.auth.signInWithEmailAndPassword(email, pw).addOnCompleteListener { task ->
             if(task.isSuccessful) {
-                editor.putString("email",binding.inputEmail.text.toString())
-                editor.commit()
-                editor.putString("pw",binding.inputPw.text.toString())
-                editor.commit()
 
                 MyData.uid = Firebase.auth.currentUser?.uid.toString()
                 MyData.displayName = Firebase.auth.currentUser?.displayName.toString()
