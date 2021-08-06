@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VacationProj3">
+        <activity android:name=".Activity.SurveyActivity"></activity>
         <activity android:name=".Activity.SignUpActivity"></activity>
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.MainActivity">

@@ -28,15 +28,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+        val goTest = findViewById<Button>(R.id.goTest)
+        val goSns = findViewById<Button>(R.id.goSns)
 
+        binding.goTest.setOnClickListener{
+            startActivity(Intent(this,SurveyActivity::class.java))
+        }
 
-
+        binding.goSns.setOnClickListener{
+            // startActivity(Intent(this,SurveyActivity::class.java)) // 엑티비티 이름 작성
+        }
     }
 
     @SuppressLint("CommitPrefEdits")
     override fun onStart() {
         super.onStart()
         if(MyData.uid == "") startActivity(Intent(this,LoginActivity::class.java))
+
 
 
     }
@@ -58,7 +66,6 @@ class MainActivity : AppCompatActivity() {
             exitProcess(0)
         }
     }
-
 
 
 
