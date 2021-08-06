@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -27,9 +28,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.stressLevel.text = MyData.stressLevel
 
-        val goTest = findViewById<Button>(R.id.goTest)
-        val goSns = findViewById<Button>(R.id.goSns)
 
         binding.goTest.setOnClickListener{
             startActivity(Intent(this,SurveyActivity::class.java))
