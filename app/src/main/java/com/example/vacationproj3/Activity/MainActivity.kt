@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -27,15 +28,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.stressLevel.text = MyData.stressLevel
 
-        Log.d(">",Firestore.hashSHA256("context what the talsunrin"))
 
+        binding.goTest.setOnClickListener{
+            startActivity(Intent(this,SurveyActivity::class.java))
+        }
+
+        binding.goSns.setOnClickListener{
+            // startActivity(Intent(this,SurveyActivity::class.java)) // 엑티비티 이름 작성
+        }
     }
 
     @SuppressLint("CommitPrefEdits")
     override fun onStart() {
         super.onStart()
         if(MyData.uid == "") startActivity(Intent(this,LoginActivity::class.java))
+
 
 
     }
@@ -57,7 +66,6 @@ class MainActivity : AppCompatActivity() {
             exitProcess(0)
         }
     }
-
 
 
 

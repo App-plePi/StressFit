@@ -9,23 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VacationProj3">
-        <activity
-            android:name=".Activity.Community.WriteActivity"
-            android:exported="true" />
-        <activity
-            android:name=".Activity.Community.CommunityActivity"
-            android:exported="true">
+        <activity android:name=".Activity.SurveyActivity"></activity>
+        <activity android:name=".Activity.SignUpActivity"></activity>
+        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity android:name=".Activity.SignUpActivity" />
-        <activity android:name=".Activity.LoginActivity" />
-        <activity android:name=".Activity.MainActivity">
-
         </activity>
     </application>
 

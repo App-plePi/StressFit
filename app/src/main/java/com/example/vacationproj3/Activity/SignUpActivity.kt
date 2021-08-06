@@ -2,7 +2,6 @@ package com.example.vacationproj3.Activity
 
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,7 +12,6 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import com.example.vacationproj3.Data.MyData
-import com.example.vacationproj3.Function.Firestore
 import com.example.vacationproj3.R
 import com.example.vacationproj3.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.ktx.auth
@@ -24,10 +22,6 @@ import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySignUpBinding
-
-    private lateinit var sf : SharedPreferences
-    private lateinit var editor : SharedPreferences.Editor
-
     var isEmail = false
     var isUsername = false
     var isPw = false
@@ -155,10 +149,6 @@ class SignUpActivity : AppCompatActivity() {
 
 
         binding.signUpButton.setOnClickListener {
-            editor.putString("email",binding.inputSignUpEmail.text.toString())
-            editor.commit()
-            editor.putString("pw", Firestore.hashSHA256(binding.inputSignUpPassword.text.toString()))
-            editor.commit()
             signUp(binding.inputSignUpEmail.text.toString(), binding.inputSignUpPassword.text.toString(), binding.inputSignUpUsername.text.toString(),
                 getString(R.string.default_profile_url)
             )
@@ -167,8 +157,6 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        sf =getSharedPreferences("Auth", MODE_PRIVATE)
-        editor = sf.edit()
     }
 
     fun BtnEnable(): Boolean {
