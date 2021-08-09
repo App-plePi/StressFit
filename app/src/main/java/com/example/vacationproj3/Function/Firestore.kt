@@ -3,6 +3,7 @@ package com.example.vacationproj3.Function
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import com.example.vacationproj3.Data.MyData
+import com.example.vacationproj3.Data.PostData
 import com.google.android.gms.common.util.Base64Utils
 import com.google.common.collect.ArrayListMultimap
 import com.google.firebase.firestore.FieldValue
@@ -135,19 +136,31 @@ object Firestore{
             null
         }
     }
-    suspend fun getPosts(): QuerySnapshot? {
-        var data : QuerySnapshot? = null
+    suspend fun getPosts(): ArrayList<PostData> {
+        var newData : ArrayList<PostData> = ArrayList()
         try {
             db.collection("posts").get().addOnSuccessListener {
-                data = it
+                for(t in it) {
+                    var tmp = PostData(
+                        t.data["username"].toString(),
+                        t.data["uid"].toString(),
+                        t.data["photoUrl"].toString(),
+                        t.data["stressLevel"].toString(),
+                        t.data["heart"] as ArrayList<String>,
+                        t.data["photoUid"].toString(),
+                        t.data["text"].toString(),
+                        t.id
+                    )
+                    newData.add(tmp)
+                }
             }.addOnFailureListener {
                 errorMessage = it.message
 
             }.await()
-            return data
+            return newData
         } catch(e: Exception) {
             errorMessage= e.message
-            return data
+            return newData
         }
     }
     suspend fun delPost(uid: String) : Boolean? { //성공시 true 실패시 false
