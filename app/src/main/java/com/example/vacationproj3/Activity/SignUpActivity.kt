@@ -2,6 +2,7 @@ package com.example.vacationproj3.Activity
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import com.example.vacationproj3.Data.MyData
+import com.example.vacationproj3.Function.Firestore
 import com.example.vacationproj3.R
 import com.example.vacationproj3.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.ktx.auth
@@ -26,6 +28,10 @@ class SignUpActivity : AppCompatActivity() {
     var isUsername = false
     var isPw = false
     var isPwC = false
+
+    private lateinit var sf : SharedPreferences
+    private lateinit var editor : SharedPreferences.Editor
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
@@ -149,7 +155,15 @@ class SignUpActivity : AppCompatActivity() {
 
 
         binding.signUpButton.setOnClickListener {
-            signUp(binding.inputSignUpEmail.text.toString(), binding.inputSignUpPassword.text.toString(), binding.inputSignUpUsername.text.toString(),
+            sf =getSharedPreferences("Auth", MODE_PRIVATE)
+            editor = sf.edit()
+            editor.putString("email",binding.inputSignUpEmail.text.toString())
+            editor.commit()
+            editor.putString("pw",Firestore.hashSHA256(binding.inputSignUpPassword.text.toString()))
+            editor.commit()
+
+
+            signUp(binding.inputSignUpEmail.text.toString(), Firestore.hashSHA256(binding.inputSignUpPassword.text.toString()), binding.inputSignUpUsername.text.toString(),
                 getString(R.string.default_profile_url)
             )
         }

@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.goTest.setOnClickListener{
+            Log.d(">>>","asfasdf")
             startActivity(Intent(this,SurveyActivity::class.java))
         }
 
