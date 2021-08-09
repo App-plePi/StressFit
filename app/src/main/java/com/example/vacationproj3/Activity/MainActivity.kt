@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.example.vacationproj3.Activity.Community.CommunityActivity
 import com.example.vacationproj3.Data.MyData
 import com.example.vacationproj3.Function.Firestore
 import com.example.vacationproj3.R
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.goSns.setOnClickListener{
-            // startActivity(Intent(this,SurveyActivity::class.java)) // 엑티비티 이름 작성
+            startActivity(Intent(this, CommunityActivity::class.java)) // 엑티비티 이름 작성
         }
     }
 

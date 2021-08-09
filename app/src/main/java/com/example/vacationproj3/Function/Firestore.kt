@@ -197,7 +197,7 @@ object Firestore{
             val data = baos.toByteArray()
             val storageRef = Firebase.storage.reference
             val PHOTOUID = createPhotoUid()
-            val photoRef = storageRef.child("postImages/$PHOTOUID.png")
+            val photoRef = storageRef.child("postImages/$PHOTOUID")
             val uploadTask = photoRef.putBytes(data)
             uploadTask.addOnFailureListener{
                 throw Exception(it.message)
