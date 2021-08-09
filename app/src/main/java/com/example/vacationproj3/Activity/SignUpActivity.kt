@@ -8,11 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
-import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
-import com.example.vacationproj3.Data.MyData
+import com.example.vacationproj3.data.MyData
 import com.example.vacationproj3.Function.Firestore
 import com.example.vacationproj3.R
 import com.example.vacationproj3.databinding.ActivitySignUpBinding
@@ -159,11 +159,12 @@ class SignUpActivity : AppCompatActivity() {
             editor = sf.edit()
             editor.putString("email",binding.inputSignUpEmail.text.toString())
             editor.commit()
-            editor.putString("pw",Firestore.hashSHA256(binding.inputSignUpPassword.text.toString()))
+            val str = Firestore.hashSHA256(binding.inputSignUpPassword.text.toString())
+            editor.putString("pw",str)
             editor.commit()
+            Log.d(">?<",str)
 
-
-            signUp(binding.inputSignUpEmail.text.toString(), Firestore.hashSHA256(binding.inputSignUpPassword.text.toString()), binding.inputSignUpUsername.text.toString(),
+            signUp(binding.inputSignUpEmail.text.toString(), str, binding.inputSignUpUsername.text.toString(),
                 getString(R.string.default_profile_url)
             )
         }

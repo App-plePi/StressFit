@@ -2,25 +2,15 @@ package com.example.vacationproj3.Activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.vacationproj3.Activity.Community.CommunityActivity
-import com.example.vacationproj3.Data.MyData
-import com.example.vacationproj3.Function.Firestore
+import com.example.vacationproj3.data.MyData
 import com.example.vacationproj3.R
 import com.example.vacationproj3.databinding.ActivityMainBinding
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import java.util.regex.Pattern
 import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {

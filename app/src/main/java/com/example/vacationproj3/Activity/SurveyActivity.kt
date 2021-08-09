@@ -3,19 +3,15 @@ package com.example.vacationproj3.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.vacationproj3.Data.MyData
 import com.example.vacationproj3.Function.Firestore
 import com.example.vacationproj3.R
-import com.example.vacationproj3.databinding.ActivityMainBinding
 import com.example.vacationproj3.databinding.ActivitySurveyBinding
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import com.example.vacationproj3.Function.Firestore.getStressQuestions as getStressQuestions
 
 

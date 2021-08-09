@@ -2,10 +2,9 @@ package com.example.vacationproj3.Function
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
-import com.example.vacationproj3.Data.MyData
-import com.example.vacationproj3.Data.PostData
+import com.example.vacationproj3.data.MyData
+import com.example.vacationproj3.data.PostData
 import com.google.android.gms.common.util.Base64Utils
-import com.google.common.collect.ArrayListMultimap
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
@@ -14,10 +13,10 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.tasks.await
 import java.io.ByteArrayOutputStream
-import java.io.Serializable
 import java.security.DigestException
 import java.security.MessageDigest
 import java.time.LocalDate
+import kotlin.experimental.and
 
 object Firestore{
     @SuppressLint("StaticFieldLeak")
@@ -259,7 +258,16 @@ object Firestore{
         }catch (e: CloneNotSupportedException){
             throw DigestException("couldn't make digest of patial content")
         }
-        return Base64Utils.encode(hash)
+        //return Base64Utils.encode(hash)
+        return bToHexStr(hash)
+    }
+
+    fun bToHexStr(data: ByteArray): String {
+        val sb = StringBuilder()
+        for(b in data) {
+            sb.append(Integer.toString((b.and(0xff.toByte())) + 0x100, 16).substring(1));
+        }
+        return sb.toString()
     }
 
 }

@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
-                android:text="매우 그렇다"
+                android:text="전혀 없었다"
                 android:textSize="8pt" />
 
             <com.google.android.material.button.MaterialButton
@@ -54,7 +54,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/answer1"
 
                 android:layout_marginTop="15dp"
-                android:text="그저 그렇다"
+                android:text="거의 없었다"
                 android:textSize="8pt"
                 />
 
@@ -66,7 +66,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/answer2"
 
                 android:layout_marginTop="15dp"
-                android:text="보통이다"
+                android:text="때때로 있었다"
                 android:textSize="8pt" />
 
             <com.google.android.material.button.MaterialButton
@@ -77,7 +77,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/answer3"
 
                 android:layout_marginTop="15dp"
-                android:text="아니다"
+                android:text="자주 있었다"
                 android:textSize="8pt" />
 
             <com.google.android.material.button.MaterialButton
@@ -88,7 +88,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/answer4"
 
                 android:layout_marginTop="15dp"
-                android:text="매우 아니다"
+                android:text="매우 자주 있었다"
                 android:textSize="8pt" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

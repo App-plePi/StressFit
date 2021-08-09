@@ -1,4 +1,4 @@
-package com.example.vacationproj3.Data
+package com.example.vacationproj3.data
 
 object MyData {
     var uid : String = ""

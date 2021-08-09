@@ -2,22 +2,16 @@ package com.example.vacationproj3.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.graphics.drawable.ShapeDrawable
-import android.graphics.drawable.shapes.OvalShape
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.vacationproj3.Data.MyData
-import com.example.vacationproj3.Data.PostData
-import com.example.vacationproj3.R
+import com.example.vacationproj3.data.MyData
+import com.example.vacationproj3.data.PostData
 import com.example.vacationproj3.databinding.ItemBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import java.util.*
 import kotlin.collections.ArrayList
@@ -39,11 +33,12 @@ class PostAdapter(private val context: Context) : RecyclerView.Adapter<PostAdapt
     }
 
     override fun getItemCount(): Int {
-        return data?.size ?: 0
+        return data.size ?: 0
     }
 
     inner class PostViewHolder(val binding : ItemBinding ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: PostData) {
+            //var currentData : PostData = data
             binding.post = data
             //Glide 통해서 사진 넣어주기
             val storage = Firebase.storage.reference

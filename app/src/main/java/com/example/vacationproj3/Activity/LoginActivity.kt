@@ -9,7 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
-import com.example.vacationproj3.Data.MyData
+import com.example.vacationproj3.data.MyData
 import com.example.vacationproj3.Function.Firestore
 import com.example.vacationproj3.R
 import com.example.vacationproj3.databinding.ActivityLoginBinding
@@ -37,9 +37,10 @@ class LoginActivity : AppCompatActivity() {
             if(EmailCheck(binding.inputEmail.text.toString()) and PasswordCheck(binding.inputPw.text.toString())) {
                 editor.putString("email",binding.inputEmail.text.toString())
                 editor.commit()
-                editor.putString("pw",Firestore.hashSHA256(binding.inputPw.text.toString()))
+                val str = Firestore.hashSHA256(binding.inputPw.text.toString())
+                editor.putString("pw",str)
                 editor.commit()
-                login(binding.inputEmail.text.toString(), Firestore.hashSHA256(binding.inputPw.text.toString()),1)
+                login(binding.inputEmail.text.toString(), str,1)
             } else {
                 showAlertNoListener("로그인 오류","이메일 및 비밀번호 형식을 확인해주세요. 비밀번호는 특수문자, 숫자, 영어를 하나 이상 포함한 8자 이상 16자 이하입니다.")
             }
@@ -53,12 +54,16 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("CommitPrefEdits")
     override fun onStart() {
         super.onStart()
         sf =getSharedPreferences("Auth", MODE_PRIVATE)
         editor = sf.edit()
+        Log.d(">!<",sf.getString("pw","").toString())
+        val str = sf.getString("pw","").toString()
         if((!sf.getString("email","").equals("")) and !(sf.getString("pw","").equals(""))) {
-            login(sf.getString("email","").toString(), sf.getString("pw","").toString(),0)
+            Log.d(">?<",sf.getString("pw","").toString())
+            login(sf.getString("email","").toString(), str,0)
         }
     }
 
