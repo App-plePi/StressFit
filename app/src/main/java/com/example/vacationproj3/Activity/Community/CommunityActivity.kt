@@ -1,5 +1,6 @@
 package com.example.vacationproj3.Activity.Community
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -25,6 +26,9 @@ class CommunityActivity : AppCompatActivity() {
             val dt : ArrayList<PostData> = Firestore.getPosts()
             postAdapter.data = dt
             postAdapter.notifyDataSetChanged()
+        }
+        binding.fab.setOnClickListener {
+            startActivity(Intent(this,WriteActivity::class.java ))
         }
 
 

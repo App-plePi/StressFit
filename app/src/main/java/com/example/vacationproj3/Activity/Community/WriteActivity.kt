@@ -24,13 +24,13 @@ class WriteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_write)
-
+        val ctx = this
         binding.btnSubmitWrite.setOnClickListener{
             if(currnetImageBitmap != null && !binding.edWrite.text.equals("")) {
                 CoroutineScope(Dispatchers.Main).launch {
                     val result = Firestore.uploadPost(currnetImageBitmap!!, binding.edWrite.text.toString())
                     if(result == true) {
-                        val builder = AlertDialog.Builder(baseContext)
+                        val builder = AlertDialog.Builder(ctx)
                         builder.setTitle("업로드 완료")
                         builder.setMessage("포스트 업로드 완료!")
                         builder.setPositiveButton("확인") {_:DialogInterface, _:Int ->
@@ -38,10 +38,10 @@ class WriteActivity : AppCompatActivity() {
                         }
                         builder.show()
                     } else {
-                        val builder = AlertDialog.Builder(baseContext)
+                        val builder = AlertDialog.Builder(ctx)
                         builder.setTitle("업로드 실패")
                         builder.setMessage(Firestore.errorMessage)
-                        builder.setPositiveButton("") {_:DialogInterface, _:Int ->
+                        builder.setPositiveButton("확인") {_:DialogInterface, _:Int ->
                             startActivity(Intent(baseContext, MainActivity::class.java))
                         }
                         builder.show()
@@ -63,7 +63,7 @@ class WriteActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK && requestCode == 1) {
-            var currentImageUrl = data?.data
+            val currentImageUrl = data?.data
             try {
                 currnetImageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, currentImageUrl)
                 binding.imgPicture.setImageBitmap(currnetImageBitmap)

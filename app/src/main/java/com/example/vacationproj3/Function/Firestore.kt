@@ -2,6 +2,7 @@ package com.example.vacationproj3.Function
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
+import android.util.Log
 import com.example.vacationproj3.data.MyData
 import com.example.vacationproj3.data.PostData
 import com.google.android.gms.common.util.Base64Utils
@@ -50,12 +51,8 @@ object Firestore{
         try {
             var returnD : String? = null
             db.collection("users").document(MyData.uid).get().addOnSuccessListener {
-                if (it != null) {
-                    returnD = it.data?.get("stressLevel")?.toString()
-                } else {
-                    errorMessage = "Document not Found"
-                    returnD = null
-                }
+                returnD = it.data?.get("stressLevel").toString()
+                Log.d(">",returnD.toString())
             }.addOnFailureListener {
                 errorMessage = it.message
                 returnD = null
@@ -220,7 +217,7 @@ object Firestore{
                 "uid" to MyData.uid,
                 "photoUrl" to MyData.photoUrl,
                 "stressLevel" to MyData.stressLevel,
-                "time" to LocalDate.now(),
+                "time" to LocalDate.now().toString(),
                 "heart" to t,
                 "photoUid" to PHOTOUID,
                 "text" to text

@@ -42,7 +42,7 @@ class PostAdapter(private val context: Context) : RecyclerView.Adapter<PostAdapt
             binding.post = data
             //Glide 통해서 사진 넣어주기
             val storage = Firebase.storage.reference
-            storage.child("postImage/"+data.postImageUUID).downloadUrl.addOnSuccessListener {
+            storage.child("postImages/"+data.postImageUUID).downloadUrl.addOnSuccessListener {
                 Glide.with(context).load(it).into(binding.img)
             }
             //포스트 주인이면 수정삭제 버튼 활성화 아니면 비활성화 if문 분리

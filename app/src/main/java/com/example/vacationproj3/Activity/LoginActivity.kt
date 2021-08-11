@@ -1,6 +1,7 @@
 package com.example.vacationproj3.Activity
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -40,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
                 val str = Firestore.hashSHA256(binding.inputPw.text.toString())
                 editor.putString("pw",str)
                 editor.commit()
-                login(binding.inputEmail.text.toString(), str,1)
+                login(binding.inputEmail.text.toString(), str,1,this)
             } else {
                 showAlertNoListener("로그인 오류","이메일 및 비밀번호 형식을 확인해주세요. 비밀번호는 특수문자, 숫자, 영어를 하나 이상 포함한 8자 이상 16자 이하입니다.")
             }
@@ -63,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
         val str = sf.getString("pw","").toString()
         if((!sf.getString("email","").equals("")) and !(sf.getString("pw","").equals(""))) {
             Log.d(">?<",sf.getString("pw","").toString())
-            login(sf.getString("email","").toString(), str,0)
+            login(sf.getString("email","").toString(), str,0,this)
         }
     }
 
@@ -86,25 +87,20 @@ class LoginActivity : AppCompatActivity() {
         return Pattern.matches(pwRegex, pw)
     }
 
-    fun login(email: String, pw: String, mode: Int) {
+    fun login(email: String, pw: String, mode: Int, context: Context) {
         Firebase.auth.signInWithEmailAndPassword(email, pw).addOnCompleteListener { task ->
             if(task.isSuccessful) {
-
-                MyData.uid = Firebase.auth.currentUser?.uid.toString()
-                MyData.displayName = Firebase.auth.currentUser?.displayName.toString()
-                MyData.photoUrl = Firebase.auth.currentUser?.photoUrl.toString()
-
-                CoroutineScope(Dispatchers.IO).launch {
-                    var data1 : String? = null
-                    runBlocking {
-                        data1 = Firestore.getMyStressLevel()
-                        data1?.let{
-                            MyData.stressLevel = data1.toString()
-                        }
-                    }
+                CoroutineScope(Dispatchers.Main).launch {
+                    MyData.uid = Firebase.auth.currentUser?.uid.toString()
+                    MyData.displayName = Firebase.auth.currentUser?.displayName.toString()
+                    MyData.photoUrl = Firebase.auth.currentUser?.photoUrl.toString()
+                    var data1 : String? = Firestore.getMyStressLevel()
+                    if(data1 != null)
+                        MyData.stressLevel = data1.toString()
+                    startActivity(Intent(context, MainActivity::class.java))
                 }
 
-                startActivity(Intent(this, MainActivity::class.java))
+
             } else {
                 if(mode == 0) showAlertNoListener("자동로그인 오류",task.exception?.message.toString())
                 else showAlertNoListener("로그인 오류",task.exception?.message.toString())
