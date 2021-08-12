@@ -88,7 +88,7 @@ class PostAdapter(private val context: Context) : RecyclerView.Adapter<PostAdapt
 
             binding.heartBtn.setOnClickListener {
                 CoroutineScope(Dispatchers.Main).launch {
-                    val result : Boolean? = Firestore.heartButton(uid)
+                    val result : Boolean? = Firestore.heartButton(data.postUid)
                     if (result==true){
                         binding.heartBtn.setBackgroundColor(Color.parseColor("#000000"))
                         Toast.makeText(context, "추가",Toast.LENGTH_SHORT).show()

@@ -102,35 +102,39 @@ object Firestore{
     //suspend fun upload
     suspend fun heartButton(uid: String): Boolean? { //하트 추가시 true리턴, 하트 삭제시 false리턴, 실패시 null
         var returnD : Boolean? = null
-
         var isPressed : Boolean? = null
-
-        return try{
+        try{
             db.collection("posts").document(uid).get().addOnSuccessListener {
-                val heartList = it.data?.get("heart") as ArrayList<*>?
-                heartList?.let {
-                    isPressed = heartList.contains(MyData.uid)
-                }
+                //val heartList = it.data?.get("heart") as ArrayList<String>?
+                val heartList = it.get("heart") as ArrayList<String>?
+                isPressed = heartList?.contains(MyData.uid)
+                Log.d(">1",isPressed.toString())
+
             }.await()
-            lateinit var temp : FieldValue
             if(isPressed == true)  {
-                temp = FieldValue.arrayUnion(MyData.uid)
-                returnD = false
+                db.collection("posts").document(uid).update("heart",FieldValue.arrayRemove(MyData.uid)).addOnSuccessListener {
+                    returnD = false
+                }.addOnFailureListener {
+                    errorMessage = it.message
+                    returnD = null
+                }.await()
+                Log.d(">2",isPressed.toString())
             }
             else {
-                temp = FieldValue.arrayRemove(MyData.uid)
-                returnD = true
+                db.collection("posts").document(uid).update("heart",FieldValue.arrayUnion(MyData.uid)).addOnSuccessListener {
+                    returnD = true
+                }.addOnFailureListener {
+                    errorMessage = it.message
+                    returnD = null
+                }.await()
+                Log.d(">3",isPressed.toString())
             }
-            db.collection("posts").document(uid).update("heart",temp).addOnSuccessListener {
-
-            }.addOnFailureListener {
-                errorMessage = it.message
-                returnD = null
-            }.await()
-            returnD
+            Log.d(">4",returnD.toString())
+            return returnD
         } catch(e: Exception) {
             errorMessage= e.message
-            null
+            Log.d(">>>", errorMessage.toString())
+            return null
         }
     }
     suspend fun getPosts(): ArrayList<PostData> {
