@@ -12,8 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VacationProj3">
-        <activity android:name=".Activity.SurveyActivity"></activity>
-        <activity android:name=".Activity.SignUpActivity"></activity>
+        <activity
+            android:name=".Activity.EditActivity"
+            android:exported="true" />
+        <activity android:name=".Activity.SurveyActivity" />
+        <activity android:name=".Activity.SignUpActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
@@ -22,12 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.Community.CommunityActivity">
-
-        </activity>
-        <activity android:name=".Activity.Community.WriteActivity">
-
-        </activity>
+        <activity android:name=".Activity.Community.CommunityActivity" />
+        <activity android:name=".Activity.Community.WriteActivity" />
     </application>
 
 </manifest>

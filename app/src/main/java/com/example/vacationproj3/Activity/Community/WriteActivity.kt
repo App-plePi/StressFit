@@ -66,7 +66,7 @@ class WriteActivity : AppCompatActivity() {
             val currentImageUrl = data?.data
             try {
                 currnetImageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, currentImageUrl)
-                binding.imgPicture.setImageBitmap(currnetImageBitmap)
+                binding.imgPictureEd.setImageBitmap(currnetImageBitmap)
             } catch (e : Exception) {
                 e.printStackTrace()
             }

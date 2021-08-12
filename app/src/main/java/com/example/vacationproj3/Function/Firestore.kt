@@ -102,6 +102,7 @@ object Firestore{
     //suspend fun upload
     suspend fun heartButton(uid: String): Boolean? { //하트 추가시 true리턴, 하트 삭제시 false리턴, 실패시 null
         var returnD : Boolean? = null
+
         var isPressed : Boolean? = null
 
         return try{
