@@ -12,6 +12,7 @@ import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
 import com.example.vacationproj3.Function.Firestore.getStressQuestions as getStressQuestions
 
 
@@ -45,6 +46,8 @@ class SurveyActivity : AppCompatActivity() {
             }
             //changeT()
             binding.question.text = stressQuestionTextArray[currentArrayPosition]
+            binding.count.text = currentArrayPosition.toString()
+
             Log.d(">>",binding.question.text.toString())
             firstBtnPoint = stressQuestionPointsArray[currentArrayPosition][0]
             secondBtnPoint =stressQuestionPointsArray[currentArrayPosition][1]
@@ -80,30 +83,6 @@ class SurveyActivity : AppCompatActivity() {
 
     }
 
-    // 이 밑으로는 다시 써야되는 부분임
-    /*var doing: Int = 0
-    var stressQues = getStressQuestions()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-    private fun countCheck(count: Int){
-        if(count < 10){
-            var toast = Toast.makeText(this, "다음 질문으로 이동", Toast.LENGTH_LONG)
-        }
-
-        else {
-            var toast = Toast.makeText(this, "주어진 설문조사를 모두 마치셨습니다!", Toast.LENGTH_LONG)
-            startActivity(Intent(this,MainActivity::class.java))
-        }
-    }
-
-    fun sum(num: Int){
-
-    }*/
-
     fun btnPressed() {
         currentArrayPosition += 1
         if(currentArrayPosition == 10) {
@@ -120,6 +99,7 @@ class SurveyActivity : AppCompatActivity() {
             }
         } else {
             binding.question.text = stressQuestionTextArray[currentArrayPosition]
+            binding.count.text = currentArrayPosition.toString()
             firstBtnPoint = stressQuestionPointsArray[currentArrayPosition][0]
             secondBtnPoint =stressQuestionPointsArray[currentArrayPosition][1]
             thirdBtnPoint = stressQuestionPointsArray[currentArrayPosition][2]

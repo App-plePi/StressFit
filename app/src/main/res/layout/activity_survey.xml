@@ -14,10 +14,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginBottom="400dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="450dp"
+            android:layout_marginLeft="10dp"
+
             android:text="질문이 들어갈 자리"
             android:textColor="@color/black"
-            android:textSize="13pt"
+            android:textSize="25sp"
 
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +32,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="45dp"
             android:layout_marginRight="35dp"
             android:layout_marginLeft="35dp"
 
@@ -90,8 +93,24 @@
                 android:layout_marginTop="15dp"
                 android:text="매우 자주 있었다"
                 android:textSize="8pt" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="450dp"
+            android:text="N/10"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+
+            android:visibility="visible"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

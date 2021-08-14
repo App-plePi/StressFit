@@ -27,6 +27,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this,SurveyActivity::class.java))
         }
 
+        binding.goHelp.setOnClickListener{
+            startActivity(Intent(this,HelpActivity::class.java))
+        }
+
         binding.goSns.setOnClickListener{
             startActivity(Intent(this, CommunityActivity::class.java)) // 엑티비티 이름 작성
         }
