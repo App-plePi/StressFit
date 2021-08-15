@@ -46,7 +46,7 @@ class SurveyActivity : AppCompatActivity() {
             }
             //changeT()
             binding.question.text = stressQuestionTextArray[currentArrayPosition]
-            binding.count.text = currentArrayPosition.toString()
+            binding.count.text = (currentArrayPosition+1).toString()+"/ 20"
 
             Log.d(">>",binding.question.text.toString())
             firstBtnPoint = stressQuestionPointsArray[currentArrayPosition][0]
@@ -99,7 +99,7 @@ class SurveyActivity : AppCompatActivity() {
             }
         } else {
             binding.question.text = stressQuestionTextArray[currentArrayPosition]
-            binding.count.text = currentArrayPosition.toString()
+            binding.count.text = (currentArrayPosition+1).toString()+"/ 20"
             firstBtnPoint = stressQuestionPointsArray[currentArrayPosition][0]
             secondBtnPoint =stressQuestionPointsArray[currentArrayPosition][1]
             thirdBtnPoint = stressQuestionPointsArray[currentArrayPosition][2]
