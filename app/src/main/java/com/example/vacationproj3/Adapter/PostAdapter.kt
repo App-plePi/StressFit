@@ -59,6 +59,7 @@ class PostAdapter(private val context: Context) : RecyclerView.Adapter<PostAdapt
             //Glide 통해서 사진 넣어주기
             val storage = Firebase.storage.reference
 
+
             //val uid = db.collection("post").document(uid).toString()
             storage.child("postImages/"+data.postImageUUID).downloadUrl.addOnSuccessListener {
                 Glide.with(context).load(it).into(binding.img)
@@ -114,9 +115,10 @@ class PostAdapter(private val context: Context) : RecyclerView.Adapter<PostAdapt
                 context.startActivity(intent)
             }
 
-            //if(data.heart = MyData.uid){//좋아요버튼 초기설정
-                //binding.heartBtn.setBackgroundColor(Color.parseColor("#000000"))
-            //}
+            //좋아요버튼 초기설정
+            if(data.heart.contains(MyData?.uid)){
+                binding.heartBtn.setBackgroundColor(Color.parseColor("#000000"))
+            }
 
             binding.heartBtn.setOnClickListener {//좋아요 클릭시
                 CoroutineScope(Dispatchers.Main).launch {
