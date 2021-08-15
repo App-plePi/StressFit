@@ -6,67 +6,136 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Activity.LoginActivity">
+        tools:context=".Activity.LoginActivity"
+        android:background="@drawable/background">
+
+        <ImageView
+            android:layout_width="63dp"
+            android:layout_height="79dp"
+            android:src="@drawable/logo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/input_form"
+            android:layout_marginTop="145dp"
+            app:layout_MarginBottom="18dp"
+            />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/input_form">
+            android:id="@+id/input_form"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="309dp"
+                android:layout_height="40dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/input_pw"
-                android:hint="Email"
+                android:hint="EMAIL"
                 android:inputType="text"
-                android:id="@+id/input_email"/>
+                android:id="@+id/input_email"
+                android:background="@drawable/edt"
+                android:elevation="6dp"
+                android:paddingStart="10dp"
+                />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="309dp"
+                android:layout_height="40dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/input_email"
                 app:layout_constraintBottom_toTopOf="@id/input_sign_button"
-                android:hint="Password"
+                android:layout_marginTop="21dp"
+                android:hint="PW"
                 android:inputType="textPassword"
-                android:id="@+id/input_pw"/>
+                android:id="@+id/input_pw"
+                android:background="@drawable/edt"
+                android:elevation="6dp"
+                android:paddingStart="10dp"/>
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="310dp"
+                android:layout_height="40dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/input_pw"
-                app:layout_constraintBottom_toTopOf="@id/input_join_button"
-                android:id="@+id/input_sign_button"
-                android:text="Sign in"
-                android:backgroundTint="#E1ABEB"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/input_join_button"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_sign_button"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:text="Sign up"
-                android:backgroundTint="#E1AAAA"/>
-
-
-
-
+                android:layout_marginTop="24dp"
+                android:id="@+id/input_sign_button"
+                android:text="LOGIN"
+                android:background ="@drawable/btn"
+                android:shadowColor="@color/black"
+                android:shadowDx="1.0"
+                android:shadowDy="3.0"
+                android:shadowRadius="9"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="204dp"
+            android:layout_height="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_form"
+            android:layout_marginBottom="225dp"
+            android:layout_marginRight="72dp"
+            android:layout_marginLeft="84dp"
+            >
+
+            <TextView
+                android:id="@+id/passwordFind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="41dp"
+                android:text="FORGOT PASSWORD"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/input_join_button"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="|"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/passwordFind"
+                app:layout_constraintRight_toLeftOf="@id/input_join_button"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/input_join_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SIGN UP"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/passwordFind"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 
