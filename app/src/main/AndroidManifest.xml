@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VacationProj3">
         <activity
+            android:name=".Activity.PasswordResetActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activity.EditActivity"
             android:exported="true" />
         <activity android:name=".Activity.SurveyActivity" />
