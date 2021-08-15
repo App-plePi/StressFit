@@ -97,7 +97,7 @@ class LoginActivity : AppCompatActivity() {
                     var data1 : String? = Firestore.getMyStressLevel()
                     if(data1 != null)
                         MyData.stressLevel = data1.toString()
-                    startActivity(Intent(context, MainActivity::class.java))
+                    //startActivity(Intent(context, MainActivity::class.java))
                 }
 
 

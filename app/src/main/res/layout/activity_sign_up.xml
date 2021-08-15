@@ -8,112 +8,169 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Activity.SignUpActivity">
+        tools:context=".Activity.SignUpActivity"
+        android:background="@drawable/background">
+
+        <ImageView
+            android:layout_width="63dp"
+            android:layout_height="79dp"
+            android:src="@drawable/logo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/input_form2"
+            android:layout_marginTop="75dp"
+            app:layout_marginBottom="34dp"
+            />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="140dp"
+            android:layout_marginBottom="2700dp"
+            android:id="@+id/input_form2">
+
+
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="309dp"
+                android:layout_height="40dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/input_sign_up_username"
-                android:id="@+id/input_sign_up_email"
-                android:hint="E-mail"/>
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/email_check"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="이메일 형식을 맞춰주세요."
-                android:textColor="#E07126"
-                android:visibility="invisible"
-                app:layout_constraintTop_toBottomOf="@id/input_sign_up_email"
-                app:layout_constraintBottom_toTopOf="@id/input_sign_up_username"/>
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/email_check"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/username_check"
                 android:id="@+id/input_sign_up_username"
-                android:hint="Username"
+                android:hint="NICKNAME"
+                android:textSize="20sp"
+                android:background="@drawable/edt"
+                android:elevation="3dp"
+                android:paddingStart="10dp"
                 />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/username_check"
-                android:layout_width="match_parent"
+                android:layout_width="309dp"
                 android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_sign_up_username"
+                app:layout_constraintBottom_toTopOf="@id/input_sign_up_email"
                 android:text="닉네임은 최대 8자까지 가능합니다."
-
+                android:textSize="12sp"
                 android:textColor="#E07126"
                 android:visibility="invisible"
-                app:layout_constraintTop_toBottomOf="@id/input_sign_up_username"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_sign_up_email"
+                android:layout_width="309dp"
+                android:layout_height="40dp"
+                android:background="@drawable/edt"
+                android:elevation="3dp"
+                android:hint="EMAIL"
+                android:paddingStart="10dp"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/email_check"
+                app:layout_constraintTop_toBottomOf="@id/username_check"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/email_check"
+                android:layout_width="309dp"
+                android:layout_height="wrap_content"
+                android:text="이메일 형식을 맞춰주세요."
+                android:textColor="#E07126"
+                android:textSize="12sp"
+                android:visibility="invisible"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_sign_up_email"
                 app:layout_constraintBottom_toTopOf="@id/input_sign_up_password"/>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/username_check"
+                android:layout_width="309dp"
+                android:layout_height="40dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:inputType="textPassword"
+                app:layout_constraintTop_toBottomOf="@id/email_check"
                 app:layout_constraintBottom_toTopOf="@id/password_check"
+                android:inputType="textPassword"
                 android:id="@+id/input_sign_up_password"
-                android:hint="Password"/>
+                android:hint="PW"
+                android:textSize="20sp"
+                android:background="@drawable/edt"
+                android:elevation="3dp"
+                android:paddingStart="10dp"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/password_check"
-                android:layout_width="match_parent"
+                android:layout_width="309dp"
                 android:layout_height="wrap_content"
                 android:text="비밀번호는 특수문자, 영문자, 숫자 각 한개 이상 총 8자이상 16자 이하입니다."
                 android:textColor="#E07126"
+                android:textSize="12sp"
                 android:visibility="invisible"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/input_sign_up_password"
-                app:layout_constraintBottom_toTopOf="@id/input_sign_up_password_check"/>
+                app:layout_constraintBottom_toTopOf="@id/input_sign_up_password_check"
+                />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/password_check"
-                app:layout_constraintLeft_toLeftOf="parent"
+                android:id="@+id/input_sign_up_password_check"
+                android:layout_width="309dp"
+                android:layout_height="40dp"
+                android:background="@drawable/edt"
+                android:elevation="3dp"
+                android:hint="RECONFIRM PW"
                 android:inputType="textPassword"
+                android:paddingStart="10dp"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/password_check_check"
-                android:id="@+id/input_sign_up_password_check"
-                android:hint="Password Check"/>
+                app:layout_constraintTop_toBottomOf="@id/password_check" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/password_check_check"
-                android:layout_width="match_parent"
+                android:layout_width="309dp"
                 android:layout_height="wrap_content"
                 android:text="비밀번호가 일치하지 않습니다."
                 android:textColor="#E07126"
                 android:visibility="invisible"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/input_sign_up_password_check"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sign UP"
-            android:backgroundTint="#E1AAAA"
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="310dp"
+            android:layout_height="40dp"
+            android:text="SIGN UP"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/sign_up_button"/>
+            app:layout_constraintTop_toBottomOf="@id/input_form2"
+            android:shadowColor="#7000417b"
+            android:shadowDx="0"
+            android:shadowDy="3.0"
+            android:shadowRadius="6"
+            android:id="@+id/sign_up_button"
+            android:background="@drawable/btn"
+            android:layout_marginTop="34dp"
+            />
 
 
 

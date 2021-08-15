@@ -18,7 +18,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/input_form"
             android:layout_marginTop="145dp"
-            app:layout_MarginBottom="18dp"
+            android:layout_marginBottom="18dp"
             />
 
 
@@ -45,10 +45,13 @@
                 android:hint="EMAIL"
                 android:inputType="text"
                 android:id="@+id/input_email"
+                android:textSize="20sp"
                 android:background="@drawable/edt"
-                android:elevation="6dp"
+                android:elevation="3dp"
                 android:paddingStart="10dp"
                 />
+
+
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="309dp"
@@ -59,13 +62,14 @@
                 app:layout_constraintBottom_toTopOf="@id/input_sign_button"
                 android:layout_marginTop="21dp"
                 android:hint="PW"
+                android:textSize="20sp"
                 android:inputType="textPassword"
                 android:id="@+id/input_pw"
                 android:background="@drawable/edt"
-                android:elevation="6dp"
+                android:elevation="3dp"
                 android:paddingStart="10dp"/>
 
-            <com.google.android.material.button.MaterialButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="310dp"
                 android:layout_height="40dp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -75,11 +79,13 @@
                 android:layout_marginTop="24dp"
                 android:id="@+id/input_sign_button"
                 android:text="LOGIN"
+                android:textSize="20sp"
+                android:textColor="@color/white"
                 android:background ="@drawable/btn"
-                android:shadowColor="@color/black"
-                android:shadowDx="1.0"
+                android:shadowColor="#7000417b"
+                android:shadowDx="0"
                 android:shadowDy="3.0"
-                android:shadowRadius="9"
+                android:shadowRadius="6"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -103,6 +109,7 @@
                 android:layout_marginRight="41dp"
                 android:text="FORGOT PASSWORD"
                 android:textSize="12sp"
+                android:textColor="#707070"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/input_join_button"
@@ -114,6 +121,7 @@
                 android:layout_height="wrap_content"
                 android:text="|"
                 android:textSize="12sp"
+                android:textColor="#707070"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/passwordFind"
                 app:layout_constraintRight_toLeftOf="@id/input_join_button"
@@ -126,6 +134,7 @@
                 android:layout_height="wrap_content"
                 android:text="SIGN UP"
                 android:textSize="12sp"
+                android:textColor="#707070"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/passwordFind"
                 app:layout_constraintRight_toRightOf="parent"
