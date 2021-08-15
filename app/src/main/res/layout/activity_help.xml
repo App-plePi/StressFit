@@ -38,16 +38,14 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <com.google.android.material.textview.MaterialTextView
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/help1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
-                android:text="청소년 스트레스\nhttp://teenstress.co.kr/"
-                android:textSize="8pt"
-                android:textColor="@color/black"/>
+                android:text="청소년 스트레스" />
 
-            <com.google.android.material.textview.MaterialTextView
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/help2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -56,12 +54,10 @@
 
                 android:layout_marginTop="25dp"
 
-                android:text="학생 상담센터\nhttps://counsel.silla.ac.kr/counsel/"
-                android:textSize="8pt"
-                android:textColor="@color/black"
+                android:text="학생 상담센터"
                 />
 
-            <com.google.android.material.textview.MaterialTextView
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/help3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -70,9 +66,8 @@
 
                 android:layout_marginTop="25dp"
 
-                android:text="서울시 정신건강 브랜드\nhttps://blutouch.net/index.asp"
-                android:textSize="8pt"
-                android:textColor="@color/black" />
+                android:text="서울시 정신건강 브랜드"
+                 />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/help4"
@@ -82,7 +77,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/help3"
 
                 android:layout_marginTop="25dp"
-                android:text="이외에도 지역 보건소 혹은\n병원에서 심리상담을 받으실 수 있습니다."
+                android:text="위 버튼을 누르면 웹사이트로 연결됩니다.\n이외에도 지역 보건소 혹은\n병원에서 심리상담을 받으실 수 있습니다."
                 android:textSize="8pt" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

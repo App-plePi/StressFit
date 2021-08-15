@@ -1,6 +1,8 @@
 package com.example.vacationproj3.Activity
 
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -17,5 +19,20 @@ class HelpActivity : AppCompatActivity() {
         binding.goMain.setOnClickListener{
             startActivity(Intent(this,MainActivity::class.java))
         }
+
+        binding.help1.setOnClickListener {
+            runBrowser("http://teenstress.co.kr/",this)
+        }
+        binding.help2.setOnClickListener {
+            runBrowser("https://counsel.ac.kr/counsel/",this)
+        }
+        binding.help3.setOnClickListener {
+            runBrowser("https://blutouch.net/index.asp",this)
+        }
+
+    }
+
+    fun runBrowser(uri : String, context: Context){
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
     }
 }
