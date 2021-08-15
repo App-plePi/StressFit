@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.example.vacationproj3.Activity.Community.CommunityActivity
 import com.example.vacationproj3.Function.Firestore
@@ -25,21 +26,22 @@ class EditActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit)
         val text = intent.getStringExtra("text")
         val postUid = intent.getStringExtra("postUid")
-
+        val context = this;
         binding.edWriteEd.setText(text)
         binding.btnEditEd.setOnClickListener{
             CoroutineScope(Dispatchers.Main).launch {
-                val result = Firestore.editPost(postUid.toString(), binding.edWriteEd.toString())
+                val result = Firestore.editPost(postUid.toString(), binding.edWriteEd.text.toString())
                 if(result==true){
-                    val builder = AlertDialog.Builder(baseContext)
+                    val builder = AlertDialog.Builder(context)
                     builder.setTitle("수정 완료")
                     builder.setPositiveButton("확인") { _: DialogInterface, _:Int ->
-                        startActivity(Intent(baseContext, CommunityActivity::class.java))
+                        startActivity(Intent(context, CommunityActivity::class.java))
                     }
                     builder.show()
                 }
                 else{
-                    val builder = AlertDialog.Builder(baseContext)
+                    Log.d(">", Firestore.errorMessage.toString());
+                    val builder = AlertDialog.Builder(context)
                     builder.setTitle("수정 실패")
                     builder.setPositiveButton("확인") { _: DialogInterface, _:Int ->
                     }

@@ -165,10 +165,6 @@ object Firestore{
         }
     }
     suspend fun delPost(uid: String) : Boolean? { //성공시 true 실패시 false
-        if(!uid.equals(MyData.uid)) {
-            errorMessage = "No Permission"
-            return false
-        }
         var returnD = false
         return try {
             db.collection("posts").document(uid).delete().addOnSuccessListener {
@@ -184,13 +180,9 @@ object Firestore{
         }
     }
     suspend fun editPost(uid: String, text: String) : Boolean? {
-        if(!uid.equals(MyData.uid)) {
-            errorMessage = "No Permission"
-            return false
-        }
         var returnD = false
         return try {
-            db.collection("posts").document(uid).update("text", text).addOnSuccessListener {
+            db.collection("posts").document(uid).update(mapOf("text" to text)).addOnSuccessListener {
                 returnD = true
             }.addOnFailureListener {
                 errorMessage = it.message

@@ -17,6 +17,7 @@ import com.example.vacationproj3.Activity.Community.CommunityActivity
 import com.example.vacationproj3.Activity.EditActivity
 import com.example.vacationproj3.Activity.MainActivity
 import com.example.vacationproj3.Function.Firestore
+import com.example.vacationproj3.Function.Firestore.getPosts
 import com.example.vacationproj3.data.MyData
 import com.example.vacationproj3.data.MyData.uid
 import com.example.vacationproj3.data.PostData
@@ -79,12 +80,15 @@ class PostAdapter(private val context: Context) : RecyclerView.Adapter<PostAdapt
                 builder.setMessage("삭제하시겠습니까?")
                 builder.setPositiveButton("확인") {_:DialogInterface, _:Int ->
                     CoroutineScope(Dispatchers.Main).launch {
-                        val result = Firestore.delPost(data.writerUid)
+                        val result = Firestore.delPost(data.postUid)
                         if (result == true) {
                             val builder = AlertDialog.Builder(context)
                             builder.setTitle("삭제 완료")
                             builder.setMessage("삭제가 성공적으로 완료됐습니다.")
                             builder.setPositiveButton("확인") {_:DialogInterface, _:Int ->
+                                this@PostAdapter.data.remove(data)
+                                this@PostAdapter.notifyDataSetChanged()
+
                             }
                             builder.show()
                         } else {
@@ -117,10 +121,14 @@ class PostAdapter(private val context: Context) : RecyclerView.Adapter<PostAdapt
             binding.heartBtn.setOnClickListener {//좋아요 클릭시
                 CoroutineScope(Dispatchers.Main).launch {
                     val result : Boolean? = Firestore.heartButton(data.postUid)
-                    if (result==true){
+                    if (result==true){ //추가시
+                        data.heart.add(MyData.uid)
+                        binding.heart.text = data.heart.size.toString()
                         binding.heartBtn.setBackgroundColor(Color.parseColor("#000000"))
                     }
-                    else if (result == false){
+                    else if (result == false){ //삭제시
+                        data.heart.remove(MyData.uid)
+                        binding.heart.text = data.heart.size.toString()
                         binding.heartBtn.setBackgroundColor(Color.parseColor("#D3D3D3"))
                     }
 
