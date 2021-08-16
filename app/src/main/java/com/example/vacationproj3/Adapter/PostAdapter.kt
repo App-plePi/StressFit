@@ -5,26 +5,17 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.vacationproj3.Activity.Community.CommunityActivity
 import com.example.vacationproj3.Activity.EditActivity
-import com.example.vacationproj3.Activity.MainActivity
 import com.example.vacationproj3.Function.Firestore
-import com.example.vacationproj3.Function.Firestore.getPosts
+import com.example.vacationproj3.R
 import com.example.vacationproj3.data.MyData
-import com.example.vacationproj3.data.MyData.uid
 import com.example.vacationproj3.data.PostData
 import com.example.vacationproj3.databinding.ItemBinding
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.components.ComponentRuntime
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CoroutineScope
@@ -68,10 +59,12 @@ class PostAdapter(private val context: Context) : RecyclerView.Adapter<PostAdapt
             //포스트 주인이면 수정삭제 버튼 활성화 아니면 비활성화 if문 분리
             if(MyData.uid.equals(data.writerUid)) {
                 binding.edit.visibility = View.VISIBLE
+                binding.bar2.visibility = View.VISIBLE
                 binding.delete.visibility = View.VISIBLE
             }
             if(!MyData.uid.equals(data.writerUid)){
                 binding.edit.visibility = View.GONE
+                binding.bar2.visibility = View.GONE
                 binding.delete.visibility = View.GONE
             }
 
@@ -117,7 +110,7 @@ class PostAdapter(private val context: Context) : RecyclerView.Adapter<PostAdapt
 
             //좋아요버튼 초기설정
             if(data.heart.contains(MyData?.uid)){
-                binding.heartBtn.setBackgroundColor(Color.parseColor("#000000"))
+                binding.heartBtn.setImageResource(R.drawable.smile_blue)
             }
 
             binding.heartBtn.setOnClickListener {//좋아요 클릭시
@@ -126,12 +119,12 @@ class PostAdapter(private val context: Context) : RecyclerView.Adapter<PostAdapt
                     if (result==true){ //추가시
                         data.heart.add(MyData.uid)
                         binding.heart.text = data.heart.size.toString()
-                        binding.heartBtn.setBackgroundColor(Color.parseColor("#000000"))
+                        binding.heartBtn.setImageResource(R.drawable.smile_blue)
                     }
                     else if (result == false){ //삭제시
                         data.heart.remove(MyData.uid)
                         binding.heart.text = data.heart.size.toString()
-                        binding.heartBtn.setBackgroundColor(Color.parseColor("#D3D3D3"))
+                        binding.heartBtn.setImageResource(R.drawable.smile_grey)
                     }
 
                 }
