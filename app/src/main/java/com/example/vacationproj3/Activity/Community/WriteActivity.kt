@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.vacationproj3.Activity.MainActivity
 import com.example.vacationproj3.Function.Firestore
@@ -52,6 +53,7 @@ class WriteActivity : AppCompatActivity() {
 
         binding.btnPicture.setOnClickListener {
             openGallery()
+            binding.imgPictureEd.setBackgroundResource(R.drawable.white)
         }
     }
     fun openGallery() {

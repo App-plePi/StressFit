@@ -48,9 +48,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.inputJoinButton.setOnClickListener {
-            if(MyData.uid == "") {
-                startActivity(Intent(this,SignUpActivity::class.java ))
-            }
+            startActivity(Intent(this,SignUpActivity::class.java ))
         }
 
     }
@@ -97,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
                     var data1 : String? = Firestore.getMyStressLevel()
                     if(data1 != null)
                         MyData.stressLevel = data1.toString()
-                    //startActivity(Intent(context, MainActivity::class.java))
+                    startActivity(Intent(context, MainActivity::class.java))
                 }
 
 
@@ -114,7 +112,7 @@ class LoginActivity : AppCompatActivity() {
         lateinit var toast: Toast
         if(System.currentTimeMillis() > backKeyPressedTime + 2500) {
             backKeyPressedTime = System.currentTimeMillis()
-            toast = Toast.makeText(this,"뒤로가기를 한번 더 누르면 종료됩니다.",Toast.LENGTH_LONG)
+            toast = Toast.makeText(this,"뒤로가기를 한번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT)
             toast.show()
             return;
         }

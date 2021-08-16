@@ -43,7 +43,8 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/username_check"
+                app:layout_constraintBottom_toTopOf="@id/input_sign_up_email"
+                android:layout_marginBottom="19dp"
                 android:id="@+id/input_sign_up_username"
                 android:hint="NICKNAME"
                 android:textSize="20sp"
@@ -55,7 +56,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/username_check"
                 android:layout_width="309dp"
-                android:layout_height="wrap_content"
+                android:layout_height="14dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/input_sign_up_username"
@@ -84,7 +85,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/email_check"
                 android:layout_width="309dp"
-                android:layout_height="wrap_content"
+                android:layout_height="14dp"
                 android:text="이메일 형식을 맞춰주세요."
                 android:textColor="#E07126"
                 android:textSize="12sp"
@@ -112,7 +113,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/password_check"
                 android:layout_width="309dp"
-                android:layout_height="wrap_content"
+                android:layout_height="14dp"
                 android:text="비밀번호는 특수문자, 영문자, 숫자 각 한개 이상 총 8자이상 16자 이하입니다."
                 android:textColor="#E07126"
                 android:textSize="12sp"
@@ -141,7 +142,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/password_check_check"
                 android:layout_width="309dp"
-                android:layout_height="wrap_content"
+                android:layout_height="14dp"
                 android:text="비밀번호가 일치하지 않습니다."
                 android:textColor="#E07126"
                 android:visibility="invisible"

@@ -15,14 +15,15 @@
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="400dp"
+            android:layout_width="322dp"
             android:layout_height="300dp"
             android:src="@color/black"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="350dp"
+            android:layout_marginTop="27dp"
             />
 
         <TextView
@@ -31,11 +32,13 @@
             android:layout_height="wrap_content"
             android:text="@{post.username}"
             android:textSize="20dp"
+            android:textColor="#707070"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="690dp"
+            android:layout_marginTop="46dp"
             android:layout_marginRight="350dp"
             />
 
@@ -44,13 +47,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="수정"
-            android:textSize="12dp"
+            android:textSize="20sp"
+            android:textColor="#707070"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="690dp"
-            android:layout_marginLeft="250dp"
+            android:layout_marginTop="46dp"
+            android:layout_marginLeft="266dp"
+            />
+
+        <TextView
+            android:id="@+id/bar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|"
+            android:textSize="20sp"
+            android:textColor="#707070"
+            app:layout_constraintLeft_toRightOf="@+id/edit"
+            app:layout_constraintRight_toLeftOf="@+id/delete"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="690dp"
+            android:layout_marginTop="46dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             />
 
         <TextView
@@ -58,13 +80,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="삭제"
-            android:textSize="12dp"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:textSize="20sp"
+            android:textColor="#707070"
+            app:layout_constraintLeft_toRightOf="@id/bar2"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="690dp"
-            android:layout_marginLeft="350dp"
+            android:layout_marginTop="46dp"
+            android:layout_marginRight="11dp"
             />
 
         <TextView
@@ -76,53 +100,42 @@
             android:textSize="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="160dp"
+            android:layout_marginBottom="130dp"
+            android:layout_marginTop="10dp"
             />
         <TextView
             android:id="@+id/heart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{Integer.toString(post.heart.size())}"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:textColor="#003288"
+            android:textSize="23dp"
+            app:layout_constraintLeft_toRightOf="@id/heartBtn"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="400dp"
-            android:layout_marginRight="270dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="110dp"
+            android:layout_marginRight="350dp"
+            android:layout_marginLeft="8dp"
             />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/heartBtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:backgroundTint="#D3D3D3"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/heart"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="400dp"
-            />
-
-
-        <Button
-            android:id="@+id/gul"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="댓글보기"
-            android:visibility="gone"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/smile_gray"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="480dp"
-            android:layout_marginRight="300dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="110dp"
+            android:layout_marginRight="370dp"
+            android:layout_marginLeft="10dp"
             />
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
