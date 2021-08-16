@@ -24,7 +24,7 @@ class HelpActivity : AppCompatActivity() {
             runBrowser("http://teenstress.co.kr/",this)
         }
         binding.help2.setOnClickListener {
-            runBrowser("https://counsel.ac.kr/counsel/",this)
+            runBrowser("https://health.seoulmc.or.kr/",this)
         }
         binding.help3.setOnClickListener {
             runBrowser("https://blutouch.net/index.asp",this)
