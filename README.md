@@ -15,7 +15,6 @@ StressFit은 스트레스 해소 어플리케이션입니다.
   - Firebase
   - 코틀린 파일 작성
 2. [Jihyun Lee](https://github.com/JiHyun13)
-  - XML
   - 코틀린 파일 작성
   - 디자인 적용
 3. [Jaehyeok Choi](https://github.com/jaehyeok3017)
